@@ -1,17 +1,20 @@
 import { request, response} from "express";
 
 export const usuariosGet = (req = request, res = response) => {
+    const {nombre = 'no introducido', apellido = 'no introducido'} = req.query;
+
     res.json({
-        msj: "get angel"
+        msj: "get angel",
+        nombre, 
+        apellido
     });
 };
 
 export const usuariosPost = (req = request, res = response) => {
-    const {nombre, apellido} = req.body;
+    const body = req.body;
     res.json({
         msj: "post angel",
-        nombre,
-        apellido
+        body
     });
 };
 
