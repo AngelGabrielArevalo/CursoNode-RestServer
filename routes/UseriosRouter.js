@@ -1,11 +1,18 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import * as UsuariosController from '../controllers/UseriosController.js';
+/* import { body } from 'express-validator'; */
+import { check } from 'express-validator';
 
 export const userRouter = Router();
 
-userRouter.get('/', UsuariosController.usuariosGet );
+/* const validarInputs = body('correo', 'El correo no es valido').isEmail(); */
 
-userRouter.post('/', UsuariosController.usuariosPost);
+userRouter.get('/', UsuariosController.usuariosGet);
+
+userRouter.post('/', [
+    check('correo', 'El correo no es valido').isEmail()
+]
+    , UsuariosController.usuariosPost);
 
 userRouter.put('/', UsuariosController.usuariosPut);
 
