@@ -33,7 +33,7 @@ export class Server {
     }
 
     listen() {
-        this.app.listen(this.port, () => {
+        this.app.listen(this.port || 3000, () => {
             console.log(`Escuchando en el puerto ${this.port}`);
         });
     }
