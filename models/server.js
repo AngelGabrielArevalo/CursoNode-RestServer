@@ -11,7 +11,7 @@ export class Server {
         this.userRouterPath = '/api/usuarios';
 
         //conectar a bd
-        this.conectarDB();
+        //this.conectarDB();
         //middlewares
         this.middlewares();
 
