@@ -11,7 +11,7 @@ export class Server {
         this.userRouterPath = '/api/usuarios';
 
         //conectar a bd
-        //this.conectarDB();
+        this.conectarDB();
         //middlewares
         this.middlewares();
 
@@ -33,7 +33,7 @@ export class Server {
     }
 
     listen() {
-        this.app.listen(8081, () => {
+        this.app.listen(this.port, () => {
             console.log(`Escuchando en el puerto ${this.port}`);
         });
     }
