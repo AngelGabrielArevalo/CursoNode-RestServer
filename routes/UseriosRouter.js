@@ -5,7 +5,7 @@ import { valiadarCampos } from "../middlewares/validar-campos.js";
 import * as validacionesDB from '../helpers/db-validators.js';
 
 
-export const userRouter = Router();
+export const userRouter = Router()  ;
 
 userRouter.get('/', UsuariosController.usuariosGet);
 
