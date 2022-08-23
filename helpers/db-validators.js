@@ -15,3 +15,11 @@ export const esCorreValido = async (correo = '') => {
         throw new Error(`El correo ingresado ya se encuentra registrado`);
     }
 }
+
+export const existeUsuarioPorId = async (id = '') => {
+    const existeUsuario = await Usuario.findById(id);
+
+    if(!existeUsuario){
+        throw new Error('El id ingresado no pertenece a ningún usuario');
+    }
+}
