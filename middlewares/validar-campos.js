@@ -8,5 +8,6 @@ export const valiadarCampos = (req = request, res = response, next) => {
         return res.status(400).json(errores);
     }
 
+    
     next();
 }
