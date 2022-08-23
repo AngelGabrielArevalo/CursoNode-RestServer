@@ -31,7 +31,7 @@ export const usuariosPost = async (req = request, res = response) => {
     await usuario.save();
 
     res.json({
-        msj: "post angel",
+        msj: "post  angel",
         usuario
     });
 };
