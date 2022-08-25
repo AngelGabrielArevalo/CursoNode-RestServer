@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import * as UsuariosController from '../controllers/UseriosController.js';
 import { check , query} from 'express-validator';
-import { valiadarCampos } from "../middlewares/validar-campos.js";
 import * as validacionesDB from '../helpers/db-validators.js';
-
+import {valiadarCampos, validarJWT, validarRol} from '../middlewares/index.js';
 
 export const userRouter = Router()  ;
 
@@ -30,6 +29,8 @@ userRouter.put('/:id',[
 ], UsuariosController.usuariosPut);
 
 userRouter.delete('/:id',[
+    validarJWT,
+    validarRol("VENTAS_ROL", "PEPE_ROL"),
     check('id', 'No es un id valido').isMongoId(),
     check('id').custom(validacionesDB.existeUsuarioPorId),
     valiadarCampos

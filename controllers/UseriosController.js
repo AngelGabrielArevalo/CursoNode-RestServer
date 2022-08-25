@@ -39,8 +39,21 @@ export const usuariosPost = async (req = request, res = response) => {
 export const usuariosDelete = async (req = request, res = response) => {
     const id = req.params.id;
 
-    const usuarioEliminado = await Usuario.findByIdAndUpdate(id, {estado: false});
+    const usuarioEliminado = await Usuario.findById(id);
 
+    if(!usuarioEliminado){
+        return res.json({
+            msg: 'No se encontró un usuario con este id'
+        });
+    }
+
+    if(!usuarioEliminado.estado){
+        return res.json({
+            msg: "Usuario inactivo"
+        });
+    }
+    
+    await Usuario.findByIdAndUpdate(id, {estado:false});
     res.json({
         usuarioEliminado
     });
