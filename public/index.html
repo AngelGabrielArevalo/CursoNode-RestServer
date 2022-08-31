@@ -27,40 +27,42 @@
     <button id="google_signout">Sign out</button>
 
     <script>
-        function handleCredentialResponse(response) {
+      function handleCredentialResponse(response) {
+        //Este es el google token, ID_TOKEN
+        //console.log('id_token', response.credential);
+        const body = {
+          id_token: response.credential,
+        };
 
-           //Este es el google token, ID_TOKEN
-           //console.log('id_token', response.credential);
-            const body = {
-                id_token: response.credential
-            }
+        var url = window.location.hostname.includes("localhost")
+          ? "http://localhost:3000/api/auth/google"
+          : "https://restserver-cursonodeudemy.herokuapp.com/api/auth/google";
 
-           fetch('http://localhost:3000/api/auth/google', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-           })
-            .then(res => res.json())
-            .then(res => {
-              console.log(res);
-              localStorage.setItem('email', res.usuario.correo)
-            })
-            .catch(error => console.log(error));
-
-        }
-
-        const botonSalir = document.getElementById("google_signout");
-        botonSalir.onclick = () => {
-          console.log(google.accounts.id);
-          google.accounts.id.disableAutoSelect();
-
-          google.accounts.id.revoke(localStorage.getItem('email'), done => {
-            localStorage.clear();
-            location.reload();
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem("email", res.usuario.correo);
           })
-        }
-      </script>
+          .catch((error) => console.log(error));
+      }
+
+      const botonSalir = document.getElementById("google_signout");
+      botonSalir.onclick = () => {
+        console.log(google.accounts.id);
+        google.accounts.id.disableAutoSelect();
+
+        google.accounts.id.revoke(localStorage.getItem("email"), (done) => {
+          localStorage.clear();
+          location.reload();
+        });
+      };
+    </script>
   </body>
 </html>
