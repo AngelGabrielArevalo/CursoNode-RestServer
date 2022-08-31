@@ -33,10 +33,11 @@
         const body = {
           id_token: response.credential,
         };
-
+        console.log("llegué acá")
+        console.log(window.location.hostname)
         var url = window.location.hostname.includes("localhost")
-          ? "http://localhost:3000/api/auth/google"
-          : "http://restserver-cursonodeudemy.herokuapp.com/api/auth/google";
+          ? 'http://localhost:3000/api/auth/google'
+          : 'http://restserver-cursonodeudemy.herokuapp.com/api/auth/google';
 
         fetch(url, {
           method: "POST",
