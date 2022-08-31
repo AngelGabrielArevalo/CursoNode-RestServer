@@ -11,3 +11,8 @@ authRouter.post('/login',[
     check('password', "La contraseña es obligatoria").not().isEmpty(),
     valiadarCampos
 ], authController.authPost);
+
+authRouter.post('/google',[
+    check('id_token', "id_token es necesario").not().isEmpty(),
+    valiadarCampos
+], authController.googleSignIn);

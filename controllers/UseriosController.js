@@ -2,6 +2,7 @@ import { request, response} from "express";
 import { Usuario } from "../models/usuario.js";
 import bcryptjs from 'bcryptjs';
 
+
 export const usuariosGet = async (req = request, res = response) => {
     //const {nombre = 'no introducido', apellido = 'no introducido'} = req.query;
     const {limite, desde} = req.query;
@@ -21,8 +22,8 @@ export const usuariosGet = async (req = request, res = response) => {
 
 export const usuariosPost = async (req = request, res = response) => {
 
-    const { nombre, correo, password, rol } = req.body;
-    const usuario = new Usuario({ nombre, correo, password, rol });
+    const { nombre, correo, password, rol, estado } = req.body;
+    const usuario = new Usuario({ nombre, correo, password, rol, estado });
 
     //encriptar contrasenia
     const salt = bcryptjs.genSaltSync();
