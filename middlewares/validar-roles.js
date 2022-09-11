@@ -21,7 +21,6 @@ export const validarRol = (...roles) => {
 
     return async (req = request, res= response, next) => {
         const usuario = req.usuario;
-        console.log(usuario);
         if(!roles.includes(usuario.rol)){
             return res.status(401).json({
                 msg: `El usuario ${usuario.nombre} debe tenes alguno de estos roles ${roles}`

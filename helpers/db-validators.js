@@ -1,3 +1,5 @@
+import { Categoria } from "../models/categoria.js";
+import { Producto } from "../models/producto.js";
 import { Role } from "../models/role.js"
 import { Usuario } from "../models/usuario.js";
 
@@ -21,5 +23,30 @@ export const existeUsuarioPorId = async (id = '') => {
 
     if(!existeUsuario){
         throw new Error('El id ingresado no pertenece a ningún usuario');
+    }
+    
+}
+
+export const existeCategoriaPorId = async (id = '') => {
+    const categoria = await Categoria.findOne({id});
+
+    if(!categoria){
+        throw new Error('El id ingresado no pertenece a ninguna categoria');
+    }
+
+    if(!categoria.estado){
+        throw new Error('El id ingresado no pertenece a ninguna categoria --estado');
+    }
+}
+
+export const existeProductoPorId = async (id = '') => {
+    const producto = await Producto.findById(id);
+
+    if(!producto){
+        throw new Error('El id ingresado no pertenece a ningun producto --id');
+    }
+
+    if(!producto.estado){
+        throw new Error('El id ingresado no pertenece a ningun producto --estado');
     }
 }
